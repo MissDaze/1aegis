@@ -1,5 +1,3 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import type { PaidTierId } from "@/lib/data/catalog";
 
 export const PAYPAL_BUSINESS = String(
@@ -14,34 +12,9 @@ export type PendingPay = {
   org: string;
 };
 
-type SellerState = {
-  merchantEmail: string;
-  setMerchantEmail: (email: string) => void;
-};
-
 export function isEmail(v: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 }
-
-export const useSeller = create<SellerState>()(
-  persist(
-    (set) => ({
-      merchantEmail: PAYPAL_BUSINESS,
-      setMerchantEmail: (email) => set({ merchantEmail: email.trim() }),
-    }),
-    {
-      name: "aegis-atlas-paypal",
-      merge: (persisted, current) => {
-        const p = (persisted ?? {}) as Partial<SellerState>;
-        const saved = (p.merchantEmail ?? "").trim();
-        return {
-          ...current,
-          merchantEmail: isEmail(saved) ? saved : PAYPAL_BUSINESS,
-        };
-      },
-    },
-  ),
-);
 
 export function paypalCheckoutAction() {
   return "https://www.paypal.com/cgi-bin/webscr";

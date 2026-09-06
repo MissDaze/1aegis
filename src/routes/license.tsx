@@ -9,7 +9,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { COMMERCIAL_TIER, FEATURED_TIER, RELEASE, TIERS } from "@/lib/data/catalog";
 import { downloadFullCsv, fulfillPurchase } from "@/lib/data/export";
-import { isEmail, paypalCheckoutAction, stashPending, takePending, useSeller } from "@/lib/license/paypal";
+import {
+  PAYPAL_BUSINESS,
+  isEmail,
+  paypalCheckoutAction,
+  stashPending,
+  takePending,
+} from "@/lib/license/paypal";
 import { isPaidTier, tierName, useLicenses, type TierId } from "@/lib/license/store";
 import { cn } from "@/lib/utils";
 
@@ -35,20 +41,15 @@ function LicensePage() {
   const search = Route.useSearch();
   const addLicense = useLicenses((s) => s.addLicense);
   const licenses = useLicenses((s) => s.licenses);
-  const merchantEmail = useSeller((s) => s.merchantEmail);
-  const setMerchantEmail = useSeller((s) => s.setMerchantEmail);
 
   const [tier, setTier] = useState<TierId>(parseTier(search.tier));
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   const [org, setOrg] = useState("");
   const [error, setError] = useState("");
-  const [sellerOpen, setSellerOpen] = useState(false);
-  const [sellerDraft, setSellerDraft] = useState(merchantEmail);
   const [copied, setCopied] = useState(false);
 
   const selected = TIERS.find((t) => t.id === tier) ?? FEATURED_TIER;
-  const paypalReady = isEmail(merchantEmail);
   const latest = licenses[0];
 
   useEffect(() => {
@@ -86,15 +87,9 @@ function LicensePage() {
       e.preventDefault();
       return;
     }
-    if (!paypalReady) {
-      e.preventDefault();
-      setError("Add the PayPal email that should receive the money first.");
-      setSellerOpen(true);
-      return;
-    }
     if (!isEmail(email)) {
       e.preventDefault();
-      setError("Your email is where we attach the files. PayPal still takes the payment.");
+      setError("Enter the email we should attach the files to.");
       return;
     }
     setError("");
@@ -104,17 +99,6 @@ function LicensePage() {
       contact: contact.trim() || email.trim(),
       org: org.trim() || (tier === "commercial" ? "One company" : "Independent"),
     });
-  }
-
-  function saveSeller(e: FormEvent) {
-    e.preventDefault();
-    if (!isEmail(sellerDraft)) {
-      toast.error("That does not look like a PayPal account email.");
-      return;
-    }
-    setMerchantEmail(sellerDraft);
-    setSellerOpen(false);
-    toast.success("PayPal will send payment to that account.");
   }
 
   const returnUrl =
@@ -133,8 +117,7 @@ function LicensePage() {
             Thirty-two thousand events. {FEATURED_TIER.price}. PayPal. Once.
           </h1>
           <p className="mt-4 max-w-xl text-muted">
-            Sample is free. The file is {FEATURED_TIER.price}. Commercial is {COMMERCIAL_TIER.price}. Money
-            goes to the PayPal account on this shop.
+            Sample is free. The file is {FEATURED_TIER.price}. Commercial is {COMMERCIAL_TIER.price}.
           </p>
         </div>
       </section>
@@ -187,7 +170,7 @@ function LicensePage() {
             >
               <h2 className="font-display text-2xl">Pay {selected.price} with PayPal</h2>
               <input type="hidden" name="cmd" value="_xclick" />
-              <input type="hidden" name="business" value={merchantEmail} />
+              <input type="hidden" name="business" value={PAYPAL_BUSINESS} />
               <input type="hidden" name="charset" value="utf-8" />
               <input type="hidden" name="currency_code" value="USD" />
               <input type="hidden" name="amount" value={selected.amount.toFixed(2)} />
@@ -253,29 +236,7 @@ function LicensePage() {
         </div>
 
         <aside>
-          <div className="rounded-xl border border-line bg-elevated p-5">
-            <h2 className="font-display text-2xl">Where the money goes</h2>
-            {paypalReady && !sellerOpen ? (
-              <>
-                <p className="mt-3 break-all font-mono text-sm">{merchantEmail}</p>
-                <Button className="mt-4" variant="outline" type="button" onClick={() => setSellerOpen(true)}>
-                  Change PayPal account
-                </Button>
-              </>
-            ) : (
-              <form onSubmit={saveSeller} className="mt-4 space-y-3">
-                <Label htmlFor="seller">PayPal business email</Label>
-                <Input
-                  id="seller"
-                  type="email"
-                  value={sellerDraft}
-                  onChange={(e) => setSellerDraft(e.target.value)}
-                />
-                <Button type="submit">Save</Button>
-              </form>
-            )}
-          </div>
-          <div className="mt-4 rounded-xl border border-line p-5">
+          <div className="rounded-xl border border-line p-5">
             <h2 className="font-display text-2xl">What you can do with it</h2>
             <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-muted">
               <li>Personal: teach, research, portfolio, local tools.</li>
