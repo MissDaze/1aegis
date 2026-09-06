@@ -1,7 +1,8 @@
 FROM node:22-slim AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+# npm install (not ci): lockfile on some npm 10 builds disagrees about nested ajv.
+RUN npm install --no-audit --no-fund
 COPY . .
 ENV NITRO_PRESET=node-server
 RUN npm run build
