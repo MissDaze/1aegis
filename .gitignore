@@ -1,0 +1,16 @@
+node_modules
+.vercel
+.output
+.nitro
+dist
+screenshots
+artifacts
+*.log
+.DS_Store
+.grok
+.env
+.env.*
+.git-credentials
+AGENTS.md
+AGENTS.project.md
+attachments

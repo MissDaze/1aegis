@@ -1,0 +1,219 @@
+{
+  "n": 32000,
+  "incidentRate": 5.87,
+  "incidents": 1877,
+  "facilities": 8,
+  "wards": 10,
+  "SHIFT_RATES": [
+    {
+      "key": "Night",
+      "n": 8016,
+      "incidents": 571,
+      "rate": 7.12
+    },
+    {
+      "key": "Evening",
+      "n": 10655,
+      "incidents": 598,
+      "rate": 5.61
+    },
+    {
+      "key": "Day",
+      "n": 13329,
+      "incidents": 708,
+      "rate": 5.31
+    }
+  ],
+  "EXP_RATES": [
+    {
+      "key": "<1yr",
+      "n": 747,
+      "incidents": 54,
+      "rate": 7.23
+    },
+    {
+      "key": "1-3yr",
+      "n": 5270,
+      "incidents": 323,
+      "rate": 6.13
+    },
+    {
+      "key": "3-10yr",
+      "n": 19673,
+      "incidents": 1158,
+      "rate": 5.89
+    },
+    {
+      "key": "10yr+",
+      "n": 6310,
+      "incidents": 342,
+      "rate": 5.42
+    }
+  ],
+  "STAFF_RATES": [
+    {
+      "key": "8+",
+      "n": 1462,
+      "incidents": 136,
+      "rate": 9.3
+    },
+    {
+      "key": "6\u20138",
+      "n": 7081,
+      "incidents": 496,
+      "rate": 7
+    },
+    {
+      "key": "4\u20136",
+      "n": 13718,
+      "incidents": 730,
+      "rate": 5.32
+    },
+    {
+      "key": "<4",
+      "n": 9739,
+      "incidents": 515,
+      "rate": 5.29
+    }
+  ],
+  "HIGH_RISK_RATES": [
+    {
+      "key": "Yes",
+      "n": 12589,
+      "incidents": 828,
+      "rate": 6.58
+    },
+    {
+      "key": "No",
+      "n": 19411,
+      "incidents": 1049,
+      "rate": 5.4
+    }
+  ],
+  "EVENT_TYPES": [
+    {
+      "key": "Administered as prescribed",
+      "n": 30123,
+      "pct": 94.13
+    },
+    {
+      "key": "Near-miss: wrong time",
+      "n": 548,
+      "pct": 1.71
+    },
+    {
+      "key": "Near-miss: wrong dose",
+      "n": 427,
+      "pct": 1.33
+    },
+    {
+      "key": "Near-miss: omitted dose",
+      "n": 261,
+      "pct": 0.82
+    },
+    {
+      "key": "Error reached patient: minor harm",
+      "n": 207,
+      "pct": 0.65
+    },
+    {
+      "key": "Near-miss: wrong route",
+      "n": 184,
+      "pct": 0.57
+    },
+    {
+      "key": "Near-miss: wrong patient (caught)",
+      "n": 134,
+      "pct": 0.42
+    },
+    {
+      "key": "Error reached patient: no harm",
+      "n": 116,
+      "pct": 0.36
+    }
+  ],
+  "HIGH_RISK_MEDS": [
+    {
+      "key": "Clozapine",
+      "n": 1239,
+      "incidents": 104,
+      "rate": 8.39
+    },
+    {
+      "key": "Potassium Chloride",
+      "n": 1290,
+      "incidents": 92,
+      "rate": 7.13
+    },
+    {
+      "key": "Insulin Glargine",
+      "n": 1206,
+      "incidents": 83,
+      "rate": 6.88
+    },
+    {
+      "key": "Warfarin",
+      "n": 1285,
+      "incidents": 86,
+      "rate": 6.69
+    },
+    {
+      "key": "Morphine",
+      "n": 1209,
+      "incidents": 79,
+      "rate": 6.53
+    },
+    {
+      "key": "Insulin Aspart",
+      "n": 1256,
+      "incidents": 79,
+      "rate": 6.29
+    },
+    {
+      "key": "Digoxin",
+      "n": 1253,
+      "incidents": 78,
+      "rate": 6.23
+    },
+    {
+      "key": "Vancomycin",
+      "n": 1238,
+      "incidents": 76,
+      "rate": 6.14
+    }
+  ],
+  "CF": [
+    {
+      "key": "Interruption during administration",
+      "n": 394
+    },
+    {
+      "key": "High workload/understaffing",
+      "n": 338
+    },
+    {
+      "key": "Staff fatigue",
+      "n": 209
+    },
+    {
+      "key": "Illegible or unclear order",
+      "n": 194
+    },
+    {
+      "key": "Look-alike/sound-alike medication",
+      "n": 181
+    },
+    {
+      "key": "Verbal order not confirmed",
+      "n": 175
+    },
+    {
+      "key": "New/agency staff unfamiliar with ward",
+      "n": 160
+    },
+    {
+      "key": "Distraction",
+      "n": 132
+    }
+  ]
+}
