@@ -1,4 +1,5 @@
 import { RELEASE } from "./catalog";
+import { SITE } from "../site";
 
 function triggerDownload(href: string, filename: string) {
   const a = document.createElement("a");
@@ -23,7 +24,8 @@ export function downloadAsset(path: string, filename: string) {
 }
 
 export function downloadProspectus() {
-  const body = `Aegis Atlas ${RELEASE.code}
+  const body = `${SITE.product} ${RELEASE.code}
+${SITE.brand} · ${SITE.origin}
 Synthetic medication administration & near-miss dataset
 ${RELEASE.events} events · ${RELEASE.facilities} facilities · ${RELEASE.wards} wards · ${RELEASE.vintage} vintage
 Incident rate ${RELEASE.incidentRate}% (modelled, not measured)

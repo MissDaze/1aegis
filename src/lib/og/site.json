@@ -1,5 +1,5 @@
 {
-  "title": "Aegis Atlas",
+  "title": "Aegis Atlas — Nix Nightshade Security",
   "card": "custom",
-  "description": "A licensed synthetic medication-administration and near-miss dataset. 32,000 events, 2025 vintage, no PHI."
+  "description": "Synthetic medication-administration and near-miss dataset from Nix Nightshade Security. 32,000 events, 2025 vintage, no PHI. Sold at nixsec.co.site."
 }

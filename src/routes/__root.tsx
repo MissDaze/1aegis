@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { SITE } from "@/lib/site";
 import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 
@@ -9,15 +10,19 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Aegis Atlas — Medication administration safety" },
+      { title: `${SITE.product} — ${SITE.brand}` },
       {
         name: "description",
         content:
-          "Aegis Atlas is a licensed synthetic medication-administration and near-miss dataset. 32,000 events, 2025 vintage, no PHI.",
+          "Aegis Atlas is a licensed synthetic medication-administration and near-miss dataset from Nix Nightshade Security. 32,000 events, 2025 vintage, no PHI.",
       },
       { name: "theme-color", content: "#f4f2ec" },
+      { property: "og:title", content: `${SITE.product} — ${SITE.brand}` },
+      { property: "og:url", content: SITE.origin },
+      { property: "og:description", content: "32,000 synthetic medication-administration events. PayPal. No PHI." },
     ],
     links: [
+      { rel: "canonical", href: SITE.origin },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "stylesheet", href: appCss },
       { rel: "manifest", href: "/__grok/manifest.webmanifest" },

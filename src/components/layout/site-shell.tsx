@@ -2,6 +2,7 @@ import { useState, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { FEATURED_TIER } from "@/lib/data/catalog";
+import { SITE } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -28,9 +29,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 border-b border-line bg-bg/90 pr-20 backdrop-blur md:pr-6">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <Link to="/" className="min-w-0">
-            <span className="block font-display text-lg leading-none">Aegis Atlas</span>
+            <span className="block font-display text-lg leading-none">{SITE.brand}</span>
             <span className="mt-1 block font-mono text-2xs uppercase tracking-label text-subtle">
-              Med safety · 2026.1
+              {SITE.product} · {SITE.host}
             </span>
           </Link>
           <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
@@ -91,9 +92,20 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </header>
       <div id="content">{children}</div>
       <footer className="border-t border-line">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>Synthetic data. No PHI. Not for clinical use.</p>
-          <p className="font-mono text-2xs uppercase tracking-label">Release {FEATURED_TIER.price} · 2026.1</p>
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted sm:px-6">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              {SITE.brand}. Synthetic data. No PHI. Not for clinical use.
+            </p>
+            <p className="font-mono text-2xs uppercase tracking-label">
+              {SITE.host} · ABN {SITE.abn}
+            </p>
+          </div>
+          <p>
+            <a className="underline decoration-line underline-offset-4 hover:text-ink" href={`mailto:${SITE.email}`}>
+              {SITE.email}
+            </a>
+          </p>
         </div>
       </footer>
     </div>

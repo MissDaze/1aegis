@@ -17,6 +17,7 @@ import {
   takePending,
 } from "@/lib/license/paypal";
 import { isPaidTier, tierName, useLicenses, type TierId } from "@/lib/license/store";
+import { SITE } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type LicenseSearch = {
@@ -177,7 +178,7 @@ function LicensePage() {
               <input
                 type="hidden"
                 name="item_name"
-                value={`Aegis Atlas ${RELEASE.code} — ${selected.name}`}
+                value={`${SITE.product} ${RELEASE.code} — ${selected.name}`}
               />
               <input type="hidden" name="item_number" value={selected.id} />
               <input type="hidden" name="no_shipping" value="1" />

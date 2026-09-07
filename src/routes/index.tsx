@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { COMMERCIAL_TIER, FEATURED_TIER, RELEASE, TIERS, USE_CASES } from "@/lib/data/catalog";
 import { downloadProspectus, downloadSampleCsv } from "@/lib/data/export";
 import { EVENT_TYPES, SHIFT_RATES } from "@/lib/data/stats";
+import { SITE } from "@/lib/site";
 import { formatInt } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({ component: Home });
@@ -18,13 +19,13 @@ function Home() {
     <SiteShell>
       <section className="border-b border-line">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
-          <Badge>Release {RELEASE.code} · {RELEASE.vintage} vintage</Badge>
+          <Badge>{SITE.brand} · {RELEASE.code}</Badge>
           <h1 className="mt-6 max-w-3xl font-display text-4xl font-medium sm:text-6xl">
             Synthetic medication-administration data you can actually sell.
           </h1>
           <p className="mt-5 max-w-xl text-lg text-muted">
             {formatInt(RELEASE.events)} events across {RELEASE.facilities} facilities and {RELEASE.wards}{" "}
-            wards. No PHI. PayPal. One payment. The 32k file is yours.
+            wards. No PHI. PayPal. One payment. Sold by {SITE.brand} at {SITE.host}.
           </p>
           <p className="mt-3 font-mono text-sm text-subtle">
             Sample is free · Full file {FEATURED_TIER.price} · Commercial {COMMERCIAL_TIER.price}
